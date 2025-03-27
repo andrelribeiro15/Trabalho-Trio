@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TechFlow - Gestão de Serviços</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Arial', sans-serif;
+    }
+    .sidebar {
+      background-color: #1e1e1e;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      padding-top: 80px;
+      transition: all 0.3s;
+    }
+    .sidebar a {
+      color: #e0e0e0;
+      text-decoration: none;
+      display: block;
+      padding: 15px;
+      transition: background-color 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #333;
+    }
+    .content {
+      margin-left: 250px;
+      padding: 80px 20px 60px;
+      transition: margin-left 0.3s;
+    }
+    .header {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+    .footer {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+    }
+    .card {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+    .table {
+      color: #e0e0e0;
+    }
+    .badge-em-andamento { background-color: #FFC107; }
+    .badge-concluido { background-color: #28a745; }
+    
+    /* Seções ocultas por padrão */
+    #secaoPedidos, #secaoTecnicos {
+      display: none;
+    }
+    #secaoInicio.ativo, #secaoPedidos.ativo, #secaoTecnicos.ativo {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="d-flex align-items-center">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjM0I4MkI0IiBkPSJNMjAgMEwwIDIwbDIwIDIwIDIwLTIweiBNMTAgMzBsMTAtMTAgMTAgMTB6Ii8+PC9zdmc+" width="40" height="40" class="me-3">
+      <h1 class="m-0" style="font-size: 1.5rem;">TechFlow</h1>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <a href="#" onclick="mostrarSecao('Inicio')" class="sidebar-item">
+      <i class="bi bi-house me-2"></i> Início
+    </a>
+    <a href="#" onclick="mostrarSecao('Pedidos')" class="sidebar-item">
+      <i class="bi bi-list-task me-2"></i> Pedidos
+    </a>
+    <a href="#" onclick="mostrarSecao('Tecnicos')" class="sidebar-item">
+      <i class="bi bi-people me-2"></i> Técnicos
+    </a>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <main class="content">
+    <!-- Seção Início -->
+    <section id="secaoInicio" class="ativo">
+      <div class="card">
+        <div class="card-header">Bem-vindo à TechFlow</div>
+        <div class="card-body">
+          <p>Plataforma de gestão de serviços técnicos. Navegue pelo menu lateral para acessar as diferentes seções.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Pedidos (Igual ao código anterior) -->
+    <section id="secaoPedidos">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Cadastro de Pedidos</div>
+            <div class="card-body">
+              <form id="formPedido">
+                <div class="mb-3">
+                  <label class="form-label">Nome do Cliente</label>
+                  <input type="text" class="form-control" name="nome_cliente" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Descrição do Serviço</label>
+                  <textarea class="form-control" name="descricao_servico" required></textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Urgência</label>
+                  <select class="form-select" name="urgencia">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Endereço</label>
+                  <input type="text" class="form-control" name="endereco" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Técnico</label>
+                  <select class="form-select" name="tecnico_atribuido" id="selectTecnicos">
+                    <!-- Opções de técnicos serão preenchidas dinamicamente -->
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Acompanhamento de Status</div>
+            <div class="card-body">
+              <div class="btn-group mb-3">
+                <button class="btn btn-outline-light" onclick="filtrarPedidos('todos')">Todos</button>
+                <button class="btn btn-outline-warning" onclick="filtrarPedidos('em_andamento')">Em Andamento</button>
+                <button class="btn btn-outline-success" onclick="filtrarPedidos('concluido')">Concluídos</button>
+              </div>
+              <table class="table" id="tabelaPedidos">
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Status</th>
+                    <th>Técnico</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaPedidos"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Técnicos -->
+    <section id="secaoTecnicos">
+      <div class="card">
+        <div class="card-header">Gerenciamento de Técnicos</div>
+        <div class="card-body">
+          <table class="table" id="tabelaTecnicos">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Localização</th>
+                <th>Próxima Disponibilidade</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaTecnicos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="text-center">
+      © 2024 TechFlow - Gestão de Serviços Técnicos
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const API_URL = 'http://localhost:3001';
+
+    function mostrarSecao(secao) {
+      // Esconde todas as seções
+      ['Inicio', 'Pedidos', 'Tecnicos'].forEach(s => {
+        document.getElementById(`secao${s}`).classList.remove('ativo');
+      });
+
+      // Mostra a seção selecionada
+      document.getElementById(`secao${secao}`).classList.add('ativo');
+      carregarDadosSecao(secao);
+    }
+
+    function carregarDadosSecao(secao) {
+      switch(secao) {
+        case 'Pedidos':
+          carregarPedidos();
+          carregarTecnicos('select');
+          break;
+        case 'Tecnicos':
+          carregarTecnicos('tabela');
+          break;
+      }
+    }
+
+    async function carregarTecnicos(tipo = 'select') {
+      try {
+        const response = await axios.get(`${API_URL}/tecnicos`);
+        const tecnicos = response.data;
+
+        if (tipo === 'select') {
+          const selectTecnicos = document.getElementById('selectTecnicos');
+          selectTecnicos.innerHTML = tecnicos.map(tecnico => `
+            <option value="${tecnico._id}">${tecnico.nome} (${tecnico.status})</option>
+          `).join('');
+        } else {
+          const corpoTabelaTecnicos = document.getElementById('corpoTabelaTecnicos');
+          corpoTabelaTecnicos.innerHTML = tecnicos.map(tecnico => `
+            <tr>
+              <td>${tecnico.nome}</td>
+              <td>
+                <span class="badge ${tecnico.status === 'disponivel' ? 'bg-success' : 'bg-danger'}">
+                  ${tecnico.status}
+                </span>
+              </td>
+              <td>${tecnico.localizacao}</td>
+              <td>${tecnico.proximaDisponibilidade || 'Imediata'}</td>
+            </tr>
+          `).join('');
+        }
+      } catch (error) {
+        console.error('Erro ao carregar técnicos', error);
+      }
+    }
+
+    // Resto do código anterior de pedidos permanece o mesmo...
+  </script>
+</body>
+</html>
