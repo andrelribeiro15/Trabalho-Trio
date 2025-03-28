@@ -1,0 +1,167 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 100% da altura da viewport */
+    width: 100vw; /* 100% da largura da viewport */
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe pelo menos 100% da altura */
+    background-color: #ffffff; /* Fundo branco */
+}
+
+header {
+    background-color: #32cdd5; /* Ciano para o header */
+    color: #ffffff; /* Texto branco para contraste */
+    width: 100%;
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o header fique acima do sidebar */
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.animated-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    color: #ffffff; /* Texto branco */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 70px; /* Começa abaixo do header */
+    left: -250px; /* Escondido por padrão */
+    width: 250px;
+    height: calc(100vh - 70px - 50px); /* Ajusta a altura para não sobrepor o header e o footer fixo */
+    background-color: #399196; /* Ciano para o sidebar */
+    transition: left 0.3s ease;
+    z-index: 999; /* Abaixo do header e do footer */
+}
+
+.sidebar.active {
+    left: 0; /* Mostra o sidebar */
+}
+
+nav .nav-link {
+    color: #ffffff !important; /* Texto branco para contraste */
+}
+
+nav .nav-link.active {
+    background-color: #ffffff; /* Fundo branco para o item ativo */
+    color: #32cdd5 !important; /* Texto ciano no item ativo */
+    border-radius: 5px;
+}
+
+main {
+    background-color: #ffffff; /* Fundo branco */
+    flex: 1 0 auto; /* Faz o main ocupar o espaço restante */
+    width: 100%;
+    margin-left: 0;
+    margin-top: 70px; /* Ajusta o espaço para o header fixo */
+    margin-bottom: 50px; /* Ajusta o espaço para o footer fixo */
+    transition: margin-left 0.3s ease;
+    overflow-y: auto; /* Permite rolagem vertical se necessário */
+    padding: 20px; /* Ajuste de padding */
+}
+
+.card {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente para o efeito de blur */
+    backdrop-filter: blur(50%); /* Aplica o efeito de desfoque no fundo */
+    -webkit-backdrop-filter: blur(10px); /* Suporte para navegadores WebKit */
+    border:solid 5px rgb(255, 255, 255, 0.1)
+}
+
+.card-img-top {
+    background-color: #32cdd5; /* Ciano para as imagens */
+    height: 300px;
+    object-fit: cover;
+}
+
+footer {
+    background-color: #32cdd5; /* Ciano para o footer */
+    color: #ffffff; /* Texto branco */
+    width: 100%;
+    position: fixed; /* Fixa o footer na parte inferior */
+    bottom: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o footer fique acima do sidebar */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Reduz a largura do sidebar em telas menores */
+        left: -200px; /* Ajusta a posição inicial */
+        top: 60px; /* Ajusta para o header em telas menores */
+        height: calc(100vh - 60px - 50px); /* Ajusta a altura para não sobrepor o header e o footer */
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    main {
+        padding: 10px; /* Reduz o padding em telas menores */
+        margin-top: 60px; /* Ajusta para o header em telas menores */
+        margin-bottom: 50px; /* Ajusta para o footer fixo */
+    }
+
+    .animated-title {
+        font-size: 1.2rem; /* Reduz o tamanho do título no header */
+    }
+
+    .card-img-top {
+        height: 200px; /* Reduz a altura das imagens em telas menores */
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 150px; /* Ainda menor em telas muito pequenas */
+        left: -150px;
+        top: 50px; /* Ajusta para o header em telas muito pequenas */
+        height: calc(100vh - 50px - 50px); /* Ajusta a altura para não sobrepor o header e o footer */
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .animated-title {
+        font-size: 1rem;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+
+    main {
+        margin-top: 50px; /* Ajusta para o header em telas muito pequenas */
+        margin-bottom: 50px; /* Ajusta para o footer fixo */
+    }
+}
