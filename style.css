@@ -57,7 +57,7 @@ header {
     left: -250px; /* Escondido por padrão */
     width: 250px;
     height: calc(100vh - 70px - 50px); /* Ajusta a altura para não sobrepor o header e o footer fixo */
-    background-color: #399196; /* Ciano para o sidebar */
+    background-color: #32cdd5; /* Ciano para o sidebar */
     transition: left 0.3s ease;
     z-index: 999; /* Abaixo do header e do footer */
 }
@@ -77,7 +77,7 @@ nav .nav-link.active {
 }
 
 main {
-    background-color: #ffffff; /* Fundo branco */
+    background-color: #000000; /* Fundo branco */
     flex: 1 0 auto; /* Faz o main ocupar o espaço restante */
     width: 100%;
     margin-left: 0;
@@ -91,15 +91,22 @@ main {
 .card {
     border: none;
     background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente para o efeito de blur */
-    backdrop-filter: blur(50%); /* Aplica o efeito de desfoque no fundo */
+    backdrop-filter: blur(10px); /* Aplica o efeito de desfoque no fundo */
     -webkit-backdrop-filter: blur(10px); /* Suporte para navegadores WebKit */
-    border:solid 5px rgb(255, 255, 255, 0.1)
 }
 
 .card-img-top {
     background-color: #32cdd5; /* Ciano para as imagens */
     height: 300px;
     object-fit: cover;
+    width: 100%; /* Garante que a imagem ocupe toda a largura da coluna */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o texto verticalmente */
+    padding: 20px;
 }
 
 footer {
@@ -110,6 +117,58 @@ footer {
     bottom: 0;
     left: 0;
     z-index: 1000; /* Garante que o footer fique acima do sidebar */
+}
+
+/* Fundo bege para os cards de Pedidos e Técnicos */
+.beige-card {
+    background-color: #f5f5dc; /* Bege */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Estilo dos botões primários */
+.btn-primary {
+    background-color: #32cdd5; /* Ciano para os botões */
+    border-color: #32cdd5;
+}
+
+.btn-primary:hover {
+    background-color: #28a4ab; /* Tom mais escuro de ciano para hover */
+    border-color: #28a4ab;
+}
+
+/* Estilo do filtro dentro do card de acompanhamento */
+.filter-card {
+    position: absolute;
+    top: 60px; /* Ajusta a posição abaixo do botão "Filtros" */
+    right: 20px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #ddd;
+    padding: 15px;
+    z-index: 1001; /* Acima do card */
+}
+
+/* Estilo do botão "Filtros" */
+#filter-toggle {
+    font-size: 0.9rem;
+}
+
+/* Ajuste do botão "Ações" na tabela */
+.btn-sm.btn-primary {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+}
+
+/* Estilo da tabela */
+.table {
+    background-color: transparent; /* Fundo transparente para a tabela */
+}
+
+.table th, .table td {
+    vertical-align: middle; /* Alinha o texto verticalmente no centro */
 }
 
 /* Responsividade */
@@ -138,6 +197,16 @@ footer {
     .card-img-top {
         height: 200px; /* Reduz a altura das imagens em telas menores */
     }
+
+    .card-body {
+        padding: 15px; /* Ajusta o padding do texto em telas menores */
+    }
+
+    .filter-card {
+        width: 200px;
+        right: 10px;
+        top: 50px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -163,5 +232,15 @@ footer {
     main {
         margin-top: 50px; /* Ajusta para o header em telas muito pequenas */
         margin-bottom: 50px; /* Ajusta para o footer fixo */
+    }
+
+    .card-body {
+        padding: 10px; /* Ajusta o padding do texto em telas muito pequenas */
+    }
+
+    .filter-card {
+        width: 150px;
+        right: 5px;
+        top: 40px;
     }
 }
