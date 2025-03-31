@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow - Técnicos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center p-3 text-dark">
+        <button class="btn btn-outline-dark" id="menu-toggle">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="logo text-center flex-grow-1">
+            <img src="https://via.placeholder.com/50x50.png?text=TechFlow" alt="TechFlow Logo" class="d-none">
+            <span class="animated-title">TECHFLOW</span>
+        </div>
+        <div>
+            <span class="me-3">Nome Usuário</span>
+            <button class="btn btn-outline-dark">SAIR</button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar text-dark p-3" id="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="index.html">INÍCIO</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="pedidos.html">Pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark active" href="tecnico.html">Técnicos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#">Sobre</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="p-4">
+        <div class="row">
+            <!-- Cadastro de Técnico -->
+            <div class="col-md-6 mb-4">
+                <div class="card beige-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cadastro de Técnico</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Digite o nome do técnico">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="telefone" placeholder="Digite o telefone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Digite o email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="matricula" class="form-label">Matrícula</label>
+                                <input type="text" class="form-control" id="matricula" placeholder="Digite a matrícula">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cargo" class="form-label">Cargo</label>
+                                <input type="text" class="form-control" id="cargo" placeholder="Digite o cargo">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cadastrados -->
+            <div class="col-md-6 mb-4">
+                <div class="card beige-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title mb-0">Cadastrados</h5>
+                            <button class="btn btn-outline-primary" id="filter-toggle">Filtros</button>
+                        </div>
+                        <!-- Filtro (inicialmente escondido) -->
+                        <div class="filter-card" id="filter-card" style="display: none;">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="filtro-nome" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="filtro-nome" placeholder="Nome do técnico">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="filtro-telefone" class="form-label">Telefone</label>
+                                    <input type="text" class="form-control" id="filtro-telefone" placeholder="Telefone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="filtro-email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="filtro-email" placeholder="Email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="filtro-matricula" class="form-label">Matrícula</label>
+                                    <input type="text" class="form-control" id="filtro-matricula" placeholder="Matrícula">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="filtro-cargo" class="form-label">Cargo</label>
+                                    <input type="text" class="form-control" id="filtro-cargo" placeholder="Cargo">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </form>
+                        </div>
+                        <!-- Tabela -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>Matrícula</th>
+                                    <th>Cargo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>João</td>
+                                    <td>47 99999-9999</td>
+                                    <td>email@gmail.com</td>
+                                    <td>1</td>
+                                    <td>Chefe</td>
+                                    <td><button class="btn btn-sm btn-primary">Escrever</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Maria</td>
+                                    <td>47 88888-8888</td>
+                                    <td>maria@gmail.com</td>
+                                    <td>2</td>
+                                    <td>Técnica</td>
+                                    <td><button class="btn btn-sm btn-primary">Escrever</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Pedro</td>
+                                    <td>47 77777-7777</td>
+                                    <td>pedro@gmail.com</td>
+                                    <td>3</td>
+                                    <td>Assistente</td>
+                                    <td><button class="btn btn-sm btn-primary">Escrever</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-3 text-dark">
+        TECH FLOW 2025
+    </footer>
+
+    <!-- Bootstrap JS and Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- JavaScript personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
